@@ -115,14 +115,11 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
         START: (self.minDate ? self.minDate.year() : 1900),
         END: (self.maxDate ? self.maxDate.year() : 0),
         getItemAtIndex: function(index) {
-            // console.log('----------------- getItemAtIndex ------------------');
             if(this.currentIndex_ < index)
                 this.currentIndex_ = index;
-            // console.log('index | this.currentIndex_ | this.START + index: ', index, this.currentIndex_, this.START + index);
             return this.START + index;
         },
         getLength: function() {
-            // console.log('GETLENGTH:', Math.min(this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2), Math.abs(this.START - this.END) + 1));
             return Math.min(
                 this.currentIndex_ + Math.floor(this.PAGE_SIZE / 2),
                 Math.abs(this.START - this.END) + 1
@@ -138,7 +135,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
         getItemAtIndex: function(index) {      
             if(self.monthTopIndex > self.monthTopIndexOld && this.months_trend !== 'reload') this.months_trend = 'increase';
             if(self.monthTopIndex < self.monthTopIndexOld && this.months_trend !== 'reload') this.months_trend = 'decrease';
-            // console.log('this.months_trend', this.months_trend);
 
             if(this.months_trend === 'decrease' && !this.START && self.monthTopIndex === 1){
                 self.initMonthsRange(this.months_trend);
@@ -151,10 +147,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
             return this.months_list[index];
         },
         getLength: function() {
-            // console.log('self.monthTopIndexOld', self.monthTopIndexOld);
-            // console.log('self.monthTopIndex', self.monthTopIndex);
-            // console.log('this.months_list', this.months_list.length, this.months_list);
-            // console.log('this.months_list', this.months_list.length);
             return this.months_list.length;
         }
     };
@@ -172,7 +164,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
     };
     
     this.showYear = function() {
-        console.log('this.showYear self.date.year()', self.date.year());
         if(!self.selectingYear){
             self.yearTopIndex = (self.date.year() - self.yearItems.START) + Math.floor(self.yearItems.PAGE_SIZE / 2);
             self.yearItems.currentIndex_ = (self.date.year() - self.yearItems.START) + 1;
@@ -188,8 +179,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
         self.date.month(year_month.month);
         $scope.year = year_month.year;
         $scope.month = year_month.month;
-        // console.log('$scope.month', $scope.month);
-        // self.selectingYear = false;
         self.animate();
     };
 
@@ -222,9 +211,7 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
             current_item = {'year': current_year, 'month': current_month},
             months_list = !trend ? [] : self.monthItems.months_list,
             last_month_index = months_list.length - 1;
-        // console.log('trend', trend);
-        // console.log('months_list', months_list);
-        // console.log('current_year | current_month | current_item', current_year, current_month, current_item);
+
         if(self.minDate) {
             init_min_year = self.minDate.year();
             init_min_month = self.minDate.month();
@@ -238,7 +225,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
                     init_min_month = Math.abs(current_month - 5);
                 }
             }else if(trend === 'decrease') {
-                // console.log('months_list[0]', months_list[0]);
                 if((months_list[0].month - 2) >= 0 ){
                     init_min_year = months_list[0].year;    
                     init_min_month = months_list[0].month - 2;            
@@ -264,7 +250,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
                     init_max_month = (current_month + 5) - 11;
                 }
             }else if(trend === 'increase') {
-                // console.log('months_list[last_month_index]', months_list[last_month_index]);
                 if((months_list[last_month_index].month + 2) <= 11 ){
                     init_max_year = months_list[last_month_index].year;    
                     init_max_month = months_list[last_month_index].month + 2;
@@ -277,11 +262,9 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
                 init_max_month = months_list[last_month_index].month;
             }
         }
-        // console.log(init_min_year, init_min_month, init_max_year, init_max_month);
+
         this.create_month_list(init_min_year, init_min_month, init_max_year, init_max_month).then(function (list) {
-            // console.log('then list', list);
             self.monthItems.months_list = list;
-            // console.log('THEN self.monthItems.months_trend', self.monthItems.months_trend);
             if(list.length>5){
                 if(!trend){
                     self.monthTopIndex = list.indexOf(list.filter(function(item) {
@@ -297,9 +280,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
             }else{
                 self.monthTopIndex = 0;
             }
-            // console.log('self.monthTopIndex', self.monthTopIndex);
-            // console.log('init_min_year | init_min_month | init_max_year | init_max_month', init_min_year, init_min_month, init_max_year, init_max_month);
-            // console.log('self.monthItems.months_list', self.monthItems.months_list);
         });
     }
     
@@ -311,8 +291,6 @@ function DatePickerCtrl($scope, $mdDialog, $mdMedia, $timeout, $q, currentDate, 
             self.selectingDay = false;
             $scope.month = self.date.month();
             $scope.year = self.date.year();
-            // console.log('$scope.month | self.date.month()', $scope.month, self.date.month());
-            // console.log('$scope.year | self.date.year()', $scope.year, self.date.year());
         }
     };
     
@@ -489,7 +467,6 @@ function CalendarCtrl($scope) {
     };
     
     $scope.$watch(function() { return  self.date.unix() }, function(newValue, oldValue) {
-        // console.log('watch self.date.unix() ', self.date.unix());
         if(newValue && newValue !== oldValue)
             self.updateDaysInMonth();
     })

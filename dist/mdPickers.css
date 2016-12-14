@@ -137,7 +137,7 @@
 .mdp-datepicker-dow,
 .mdp-datepicker-month {
   /*font-size: 1.8rem;*/
-  font-size: 18px;
+  font-size: 16px;
   opacity: 0.6;
 }
 .mdp-datepicker-date[ng-click]:not(.active),
