@@ -84,7 +84,8 @@
   padding: 0px 5px;
 }
 .mdp-calendar-week-days {
-  font-size: 0.75rem;
+  /*font-size: 0.75rem;*/
+  font-size: 10px;
   opacity: 0.6;
 }
 .mdp-calendar-week-days > * {
@@ -125,7 +126,8 @@
   background-color: transparent !important;
 }
 .mdp-calendar-monthyear {
-  font-size: 0.8125rem;
+  /*font-size: 0.8125rem;*/
+  font-size: 16px;
   font-weight: bold;
   line-height: 32px;
   min-height: 32px;
@@ -134,59 +136,70 @@
 .mdp-datepicker-day,
 .mdp-datepicker-dow,
 .mdp-datepicker-month {
-  font-size: 1.8rem;
+  /*font-size: 1.8rem;*/
+  font-size: 18px;
   opacity: 0.6;
 }
-.mdp-datepicker-date:not(.active),
+.mdp-datepicker-date[ng-click]:not(.active),
 .mdp-datepicker-day:not(.active),
-.mdp-datepicker-dow:not(.active),
-.mdp-datepicker-month:not(.active) {
+.mdp-datepicker-dow:not(.active) {
   cursor: pointer;
 }
 .mdp-datepicker-date.active,
 .mdp-datepicker-day.active,
 .mdp-datepicker-dow.active,
-.mdp-datepicker-month.active,
-.mdp-datepicker-date:hover,
+.mdp-datepicker-date[ng-click]:hover,
 .mdp-datepicker-day:hover,
-.mdp-datepicker-dow:hover,
-.mdp-datepicker-month:hover {
+.mdp-datepicker-dow:hover {
   opacity: 1;
 }
-.mdp-datepicker-year {
-  font-size: 0.9rem;
+.mdp-datepicker-year, .mdp-datepicker-month {
+  /*font-size: 0.9rem;*/
+  font-size: 16px;
   opacity: 0.6;
   padding: 0;
   margin: 0;
 }
-.mdp-datepicker-year:not(.active) {
+.mdp-datepicker-year[ng-click]:not(.active), .mdp-datepicker-month[ng-click]:not(.active) {
   cursor: pointer;
 }
 .mdp-datepicker-year.active,
-.mdp-datepicker-year:hover {
+.mdp-datepicker-year[ng-click]:hover,
+.mdp-datepicker-month.active,
+.mdp-datepicker-month[ng-click]:hover {
   opacity: 1;
 }
-.mdp-datepicker-select-year {
+.mdp-datepicker-select-year, .mdp-datepicker-select-month {
   height: 232px;
 }
-.mdp-datepicker-select-year .repeated-year {
+.mdp-datepicker-select-year .repeated-year, .mdp-datepicker-select-month .repeated-month {
   text-align: center;
 }
-.mdp-datepicker-select-year .repeated-year .md-button {
+.mdp-datepicker-select-year .repeated-year .md-button, .mdp-datepicker-select-month .repeated-month .md-button {
   width: 100%;
   margin: 0;
   border-radius: 0;
   padding: 0;
-  font-size: 1.0rem;
+  /*font-size: 1.0rem;*/
+  font-size: 14px;
   line-height: 42px;
 }
 .mdp-datepicker-select-year .repeated-year .md-button.current {
-  font-size: 1.8rem;
+  /*font-size: 1.8rem;*/
+  font-size: 22px;
+  line-height: 42px;
+}
+.mdp-datepicker-select-month .repeated-month .md-button.current {
+  /*font-size: 1.8rem;*/
+  font-size: 20px;
   line-height: 42px;
 }
 .mdp-datepicker-select-year .md-virtual-repeat-container,
 .mdp-datepicker-select-year .md-virtual-repeat-offsetter,
-.mdp-datepicker-select-year .md-virtual-repeat-scroller {
+.mdp-datepicker-select-year .md-virtual-repeat-scroller,
+.mdp-datepicker-select-month .md-virtual-repeat-container,
+.mdp-datepicker-select-month .md-virtual-repeat-offsetter,
+.mdp-datepicker-select-month .md-virtual-repeat-scroller {
   height: 100%;
   width: 100%;
 }
@@ -196,7 +209,7 @@ mdp-date-picker > md-input-container.md-has-icon {
 mdp-date-picker .md-button.md-icon-button {
   margin: 18px 0 0 0;
 }
-.mdp-datepicker:not(.portrait) .mdp-datepicker-select-year {
+.mdp-datepicker:not(.portrait) .mdp-datepicker-select-year, .mdp-datepicker:not(.portrait) .mdp-datepicker-select-month {
   width: 309px;
 }
 .mdp-datepicker:not(.portrait) .mdp-calendar {
@@ -216,7 +229,7 @@ mdp-date-picker .md-button.md-icon-button {
   width: 42px;
 }
 .mdp-datepicker .mdp-datepicker-date-wrapper {
-  padding: 16px 35px 16px 16px;
+  padding: 16px;
 }
 .mdp-datepicker md-dialog-content {
   overflow: hidden;
@@ -338,7 +351,8 @@ mdp-calendar {
   padding: 15px;
 }
 .mdp-timepicker .mdp-timepicker-selected-time {
-  font-size: 3rem;
+  /*font-size: 3rem;*/
+  font-size: 30px;
 }
 .mdp-timepicker:not(.portrait) .mdp-timepicker-time {
   width: 138px;
@@ -358,10 +372,12 @@ mdp-time-picker .md-button.md-icon-button {
   outline: 0;
   opacity: 0.6;
 }
-.mdp-timepicker-selected-time > span:not(.active),
-.mdp-timepicker-selected-ampm > span:not(.active) {
+.mdp-timepicker-selected-time > span[ng-click]:not(.active),
+.mdp-timepicker-selected-ampm > span[ng-click]:not(.active) {
   cursor: pointer;
 }
+.mdp-timepicker-selected-time > span[ng-click]:hover,
+.mdp-timepicker-selected-ampm > span[ng-click]:hover,
 .mdp-timepicker-selected-time > span.active,
 .mdp-timepicker-selected-ampm > span.active {
   opacity: 1;
